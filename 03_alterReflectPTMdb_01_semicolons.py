@@ -10,7 +10,7 @@ Base.metadata = metadata
 metadata.reflect()
 Ptms = Table('ptms', metadata, autoload=True, autoload_with=engine)
 
-# Query, método 1
+# Query
 Session = sessionmaker(bind=engine)
 session = Session()
 columns = [x.name for x in Ptms.columns]
@@ -18,12 +18,6 @@ query = session.query(Ptms.columns.id, Ptms.columns.description).\
     filter(text("type='lipid moiety-binding region'")).\
     order_by(Ptms.columns.id)
 
-# filter(text("type!='disulfide bond'")).\
-
-
-#print("{: <100} {: >20}".format(*columns))
-#for i in query:
-#    print("{: <100} {: >20}".format(*i))
 
 print("{: <40} {: <40} {: <40}".format(*['Clean', 'Raw', 'Id\n']))
 
@@ -36,6 +30,7 @@ for row in query:
         update_statement = Ptms.update().where(Ptms.columns.id == row[0]).values(description=clean)
         session.execute(update_statement)
         print("{: <40} {: <40} {: <40}".format(*[clean, row[1], row[0]]))
+    # Uncomment for more verbose!
     #else: print("{: <40} {: <40} {: <40}".format(*[row[1], row[1], row[0]]))
 
     n += 1
@@ -46,13 +41,3 @@ for row in query:
         session.commit()
 
 session.commit()
-
-#stmt = Ptms.update().where(Ptms.columns.id==1219).values(description='N6-succinyllysine; alternate')
-#session.execute(stmt)
-#session.commit()
-
-
-#[print(x) for x in dir(Ptms)]
-#session.query(Ptms).filter_by(id=1219).update({"description": u"N6-succinyllysine; alternatee"})
-
-#"""

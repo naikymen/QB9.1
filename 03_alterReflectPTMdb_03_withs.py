@@ -39,13 +39,3 @@ for row in query:
         session.commit()
 
 session.commit()
-
-#stmt = Ptms.update().where(Ptms.columns.id==1219).values(description='N6-succinyllysine; alternate')
-#session.execute(stmt)
-#session.commit()
-
-
-#[print(x) for x in dir(Ptms)]
-#session.query(Ptms).filter_by(id=1219).update({"description": u"N6-succinyllysine; alternatee"})
-
-#"""

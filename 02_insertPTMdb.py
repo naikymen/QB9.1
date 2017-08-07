@@ -1,5 +1,4 @@
 from sqlalchemy import MetaData, create_engine, Table
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from Bio import SeqIO
 import gzip
@@ -18,10 +17,6 @@ Base.metadata.bind = engine
 Session = sessionmaker(bind=engine)
 session = Session()
 
-#new_entry = Ptms(type='cross link', description='tan cerca y tan lejos')
-#session.add(new_entry)
-#session.commit()
-
 # Abrir el archivo de SwissProt
 gzHandle = gzip.open("../uniprot_sprot.xml.gz", 'rt')
 records = SeqIO.parse(gzHandle,"uniprot-xml")
@@ -31,7 +26,7 @@ entry = list()
 types = set()
 unique = set()
 
-#"""
+
 # Parsear SwissProt
 for record in records:
     for feature in record.features:
