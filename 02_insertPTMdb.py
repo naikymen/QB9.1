@@ -84,13 +84,15 @@ for record in records:
             try:
                 start_p = int(start) + 1
                 start_r = record.seq[start_p - 1]
-            except:start_p, start_r = ['NULL', 'NULL']
+            except:
+                start_p, start_r = ['NULL', 'NULL']
 
             end = str(feature.location.end)
             try:
                 end_p = int(end)
                 end_r = record.seq[end_p - 1]
-            except:end_p, end_r = ['NULL', 'NULL']
+            except:
+                end_p, end_r = ['NULL', 'NULL']
 
 
             session.add(Ptms(

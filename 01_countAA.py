@@ -34,10 +34,12 @@ for record in records:
     c.update(sequence)
 
     i += 1
+    # Print progress every 500 lines
     if int(i/500) >= j:
         j += 1
         print(j*500, int(time.time()-start_time))
         print(c)
+    # Break if max iterations are reached
     if i >= n:
         break
 
