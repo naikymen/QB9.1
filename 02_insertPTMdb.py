@@ -18,10 +18,12 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 # Abrir el archivo de SwissProt
-gzHandle = gzip.open("../uniprot_sprot.xml.gz", 'rt')
+gzHandle = gzip.open("data/uniprot_sprot.xml.gz", 'rt')
 records = SeqIO.parse(gzHandle,"uniprot-xml")
-i, n, j = 0, 555000, 0  # limit parsing to n entries
-# total does not exceed 555000 in this SwissProt version
+i, n, j = 0, 1000000, 0  # limit parsing to n entries
+# total does not exceed 555000 in this SwissProt version (circa 2017)
+# In 2020 the database lists 563,972 entries
+
 entry = list()
 types = set()
 unique = set()
@@ -116,6 +118,7 @@ for record in records:
         print(j*500, int(time.time()-start_time))
         session.commit()
     if i >= n:
+        print("Max entries exceeded, increase 'n'")
         break
 
 print('Lesto: ', int(time.time()-start_time))

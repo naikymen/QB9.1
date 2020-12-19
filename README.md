@@ -14,3 +14,24 @@ They use SQLalchemy to create and clean the database, stored in SQLite format.
 Execute in order, starting by the `declarePTMdb.py` script.
 
 Disclaimer: it may not be pretty, nor well documented :)
+
+## Dependencies
+
+    sqlalchemy
+    Bio
+
+## What "is" a PTM?
+
+PTMs are defined at https://www.uniprot.org/help/sequence_annotation as "Amino acid modifications".
+
+We count:
+
+* 'modified residue'
+* 'cross-link'
+* 'disulfide bond'
+* 'lipid moiety-binding region'
+* 'glycosylation site'
+
+We skip:
+
+* Non-standard residue
