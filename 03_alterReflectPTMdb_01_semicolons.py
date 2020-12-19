@@ -35,9 +35,11 @@ for row in query:
 
     n += 1
 
-    if n/1000 >= j:
+    if n/100 >= j:
         j += 1
         print(n)
         session.commit()
+        # Uncomment for more verbose!
+        print("{: <40} {: <40} {: <40}".format(*[row[1], row[1], row[0]]))
 
 session.commit()
